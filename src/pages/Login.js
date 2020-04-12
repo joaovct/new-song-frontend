@@ -5,6 +5,7 @@ import {Section as section, Title, Button} from '../style.js'
 import logo_white from '../assets/logo_white.png'
 
 const {REACT_APP_LOGIN_URL: login_url} = process.env
+console.log(process.env)
 
 function Login({history}){
 
