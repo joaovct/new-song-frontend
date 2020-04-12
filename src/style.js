@@ -10,8 +10,6 @@ export const bgElement = '#333'
 export const boxShadow = '0 10px 10px 0 rgba(0,0,0,.1)'
 
 export const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,600,600i,700,700i&display=swap');
-
     html, body{
         height: 100%;
         width: 100%;

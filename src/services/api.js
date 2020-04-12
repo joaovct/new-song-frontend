@@ -1,12 +1,14 @@
 import axios from 'axios'
 
+const {REACT_APP_CLIENT_ID: client_id, REACT_APP_CLIENT_SECRET: client_secret, REACT_APP_REDIRECT_URI: redirect_uri} = process.env
+
 const api = {
     use: axios.create({
         baseURL: 'https://api.spotify.com/v1'
     }),
-    client_id: 'd517f32ca0f242078eecd6a1969a20a2',
-    client_secret: '88909b20807140e9b9b3ab56591e682f',
-    redirect_uri: 'https://new-song.herokuapp.com/callback'
+    client_id,
+    client_secret,
+    redirect_uri
 }
 
 export default api
