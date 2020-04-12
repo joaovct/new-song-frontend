@@ -7,7 +7,7 @@ import AppContext from '../AppContext'
 
 import {bgElement, boxShadow} from '../style'
 import logo from '../assets/logo_white.png'
-import emptyImg from '../assets/empty.png'
+import emptyUserImg from '../assets/emptyUserImage.png'
 
 
 function Header(){
@@ -21,7 +21,7 @@ function Header(){
             <WrapperOptions>
                 <Photo 
                     onClick={()=>{setShowOptions(!showOptions)}}
-                    src={userProfile ? userProfile.images[0].url : emptyImg}
+                    src={userProfile ? userProfile.length ? userProfile.images[0].url : emptyUserImg : emptyUserImg}
                     alt="Your profile"
                 />
                 <Options className={showOptions ? 'showUserOptions' : 'hideUserOptions'}>

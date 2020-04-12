@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {Section as section, Title, Button} from '../style.js'
 import logo_white from '../assets/logo_white.png'
 
-const backend_login = 'https://new-song-backend.herokuapp.com/login'
+const {REACT_APP_LOGIN_URL: login_url} = process.env
 
 function Login({history}){
 
@@ -26,7 +26,7 @@ function Login({history}){
             <Content>
                 <Title>Ache um novo som.</Title>
                 <p>Escute músicas ou podcasts de genêros totalmente aleatórios.</p>
-                <a href={backend_login}><Button>Continuar com Spotify</Button></a>
+                <a href={login_url}><Button>Continuar com Spotify</Button></a>
             </Content>
         </Section>
     )
