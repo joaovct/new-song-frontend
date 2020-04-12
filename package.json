@@ -18,10 +18,11 @@
     "react-router-transition": "^2.0.0",
     "react-scripts": "3.4.0",
     "react-transition-group": "^4.3.0",
+    "serve": "^11.3.0",
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "serve -s build",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
