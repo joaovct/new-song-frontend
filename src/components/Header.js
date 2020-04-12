@@ -21,7 +21,7 @@ function Header(){
             <WrapperOptions>
                 <Photo 
                     onClick={()=>{setShowOptions(!showOptions)}}
-                    src={userProfile ? userProfile.length ? userProfile.images[0].url : emptyUserImg : emptyUserImg}
+                    src={userProfile ? userProfile.images.length ? userProfile.images[0].url : emptyUserImg : emptyUserImg}
                     alt="Your profile"
                 />
                 <Options className={showOptions ? 'showUserOptions' : 'hideUserOptions'}>
