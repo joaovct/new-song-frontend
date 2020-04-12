@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import {Section as section, Title, Button} from '../style.js'
 import logo_white from '../assets/logo_white.png'
 
+const backend_login = 'https://new-song-backend.herokuapp.com/login'
+
 function Login({history}){
 
     useEffect(()=>{
@@ -24,7 +26,7 @@ function Login({history}){
             <Content>
                 <Title>Ache um novo som.</Title>
                 <p>Escute músicas ou podcasts de genêros totalmente aleatórios.</p>
-                <a href="http://localhost:8888/login"><Button>Continuar com Spotify</Button></a>
+                <a href={backend_login}><Button>Continuar com Spotify</Button></a>
             </Content>
         </Section>
     )

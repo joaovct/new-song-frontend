@@ -6,7 +6,7 @@ const api = {
     }),
     client_id: 'd517f32ca0f242078eecd6a1969a20a2',
     client_secret: '88909b20807140e9b9b3ab56591e682f',
-    redirect_uri: 'http://localhost:3000/callback'
+    redirect_uri: 'https://new-song.herokuapp.com/callback'
 }
 
 export default api
