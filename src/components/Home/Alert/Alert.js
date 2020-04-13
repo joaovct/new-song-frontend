@@ -30,6 +30,7 @@ const WrapperComponent = styled.div`
     box-shadow: ${boxShadow};
     padding: 15px 20px;
     position: fixed;
+    z-index: 998;
     bottom: 15px;
     right: 15px;
     transition: .25s;
