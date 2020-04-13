@@ -25,7 +25,7 @@ function Login({history}){
             <Logo src={logo_white} alt="Logo New Song"/>
             <Content>
                 <Title>Ache um novo som.</Title>
-                <p>Escute músicas ou podcasts de genêros totalmente aleatórios.</p>
+                <p>Escute músicas ou podcasts de gêneros totalmente aleatórios.</p>
                 <a href={login_url}><Button>Continuar com Spotify</Button></a>
             </Content>
         </Section>
