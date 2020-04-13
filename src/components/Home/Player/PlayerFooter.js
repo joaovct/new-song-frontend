@@ -5,12 +5,14 @@ import styled from 'styled-components'
 import {bgElement, boxShadow, FieldInputToggle} from '../../../style'
 import useGetUserPlaylists from '../../../hooks/useGetUserPlaylists'
 
-import UserPlaylists from '../Playlists/UserPlaylists'
+import UserPlaylists from './PlayerSettings/UserPlaylists'
+import ChooseLanguages from './PlayerSettings/ChooseLanguages'
 
-function PlayerFooter({typeListen, explicitContent, setExplicitContent, track_id}){
+function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, track_id, languages, handleSetLanguages}){
     const history = useHistory()
     const [showSettings, setShowSettings] = useState(false)
     const [showPlaylists, setShowPlaylists] = useState(false)
+    const [showChooseLanguages, setShowChooseLanguages] = useState(false)
     const playlists = useGetUserPlaylists()
 
     return(
@@ -23,6 +25,14 @@ function PlayerFooter({typeListen, explicitContent, setExplicitContent, track_id
                 setShowPlaylists={setShowPlaylists}/>
             : <></>
         }
+        {
+            showChooseLanguages
+            ? <ChooseLanguages
+                setShowChooseLanguage={setShowChooseLanguages}
+                languages={languages}
+                handleSetLanguages={handleSetLanguages}/>
+            : <></>
+        }
         <Footer>
             <FieldBackButton onClick={()=>{history.push('/callback')}}>
                 <i className="fas fa-arrow-left"></i>
@@ -32,31 +42,30 @@ function PlayerFooter({typeListen, explicitContent, setExplicitContent, track_id
                 <i onClick={()=>{setShowSettings(!showSettings)}} className="fas fa-cog"></i>
                 <Settings 
                     className={`${showSettings ? 'showListenSettings' : 'hideListenSettings'}`}>
-                    { typeListen === 'music' || typeListen === '' ?
-                        <li>
-                            <label htmlFor="explicit-content-toggle">Conteúdo explicíto</label>
-                            <FieldInputToggle htmlFor="explicit-content-toggle" className={`${explicitContent ? 'checked' : ''}`}>
-                                <input id="explicit-content-toggle" type="checkbox" checked={explicitContent ? true : false} onChange={(e)=>{setExplicitContent(e.target.checked)}}/>
-                                <span></span>
-                            </FieldInputToggle>
-                        </li> 
+                    { 
+                        typeListen === 'music' || typeListen === '' 
+                        ?
+                        <>
+                            <li>
+                                <label htmlFor="explicit-content-toggle">Incluir conteúdo explicíto</label>
+                                <FieldInputToggle htmlFor="explicit-content-toggle" className={`${explicitContent ? 'checked' : ''}`}>
+                                    <input id="explicit-content-toggle" type="checkbox" checked={explicitContent ? true : false} onChange={(e)=>{handleSetExplicitContent(e.target.checked)}}/>
+                                    <span></span>
+                                </FieldInputToggle>
+                            </li> 
+                            <li>
+                                <label onClick={()=>{setShowPlaylists(true)}}>
+                                    Adicionar a playlist <span role="img" aria-label="Music emoji">🎵</span>
+                                </label>
+                            </li>
+                        </>
                         :
                         <li>
-                            <label onClick={()=>{alert('mudando sua preferência de idioma... 🌎')}}>
+                            <label onClick={()=>{setShowChooseLanguages(true)}}>
                                 Preferência de idioma <span role="img" aria-label="Music emoji">🌎</span>
                             </label>
                         </li>
                     }
-                    {
-                        typeListen === 'music' || typeListen === '' ?
-                        <li>
-                            <label onClick={()=>{setShowPlaylists(true)}}>
-                                Adicionar a playlist <span role="img" aria-label="Music emoji">🎵</span>
-                            </label>
-                        </li>
-                        : <></>
-                    }
-                    
                 </Settings>
 
             </WrapperSettings>

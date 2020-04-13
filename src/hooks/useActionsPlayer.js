@@ -3,7 +3,7 @@ import {useState, useEffect, useContext, useRef} from 'react'
 import {getRandomSong} from '../helpers/playerHelper'
 import AppContext from '../AppContext'
 
-function useActionsPlayer({setTrack, track, explicitContent, typeListen}){
+function useActionsPlayer({setTrack, track, explicitContent, typeListen, languages}){
     const {accessToken} = useContext(AppContext)
     const renders = useRef(0)
     const [tracks, setTracks] = useState([])
@@ -22,11 +22,12 @@ function useActionsPlayer({setTrack, track, explicitContent, typeListen}){
         if(tracks.length > 1) setPointer(tracks.length - 1)
     },[tracks])
 
+
     useEffect(()=>{
         if(pointer > tracks.length - 1 && pointer >= 0 && renders.current > 1){
-            getNewRandomSong()
-            async function getNewRandomSong(){
-                setTrack(await getRandomSong({type: typeListen, explicit: explicitContent, accessToken}))
+            fetchData()
+            async function fetchData(){
+                setTrack(await getRandomSong({type: typeListen, explicit: explicitContent, accessToken, languages}))
             }
         }else if(pointer <= tracks.length - 1 && pointer >= 0 && renders.current > 1){
             setTrack(tracks[pointer])

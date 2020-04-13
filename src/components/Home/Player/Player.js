@@ -12,11 +12,14 @@ import PlayerFooter from './PlayerFooter'
 
 function Player({typeListen}){
     const [explicitContent, setExplicitContent] = useState(false)
-    const [track, setTrack, toggleSong] = usePlayer({typeListen, explicitContent})
-    const [, setPointer] = useActionsPlayer({typeListen, explicitContent, track, setTrack})
+    const [languages, setLanguages] = useState([])
+    const [track, setTrack, toggleSong] = usePlayer({typeListen, explicitContent, languages})
+    const [, setPointer] = useActionsPlayer({typeListen, explicitContent, languages, track, setTrack})
 
     const nextSong = () => setPointer(p => p + 1)
-    const previousSong = () => setPointer(p => p > 0 ? p - 1 : p)  
+    const previousSong = () => setPointer(p => p > 0 ? p - 1 : p)
+    const handleSetLanguages = value => setLanguages(value)  
+    const handleSetExplicitContent = value => setExplicitContent(value)
 
     function actionPlayer(action){
         if(action === 'next') nextSong()
@@ -36,7 +39,7 @@ function Player({typeListen}){
                     <Subtitle>{typeListen === 'music' || typeListen === '' ? track.artists[0].name : ''}</Subtitle>
                 </Playing>
                 <PlayerButtons actionPlayer={actionPlayer}/>
-                <PlayerFooter typeListen={typeListen} explicitContent={explicitContent} setExplicitContent={setExplicitContent} track_id={track ? track.id : ''}/>
+                <PlayerFooter typeListen={typeListen} explicitContent={explicitContent} handleSetExplicitContent={handleSetExplicitContent} languages={languages} handleSetLanguages={handleSetLanguages} track_id={track ? track.id : ''}/>
                 </> 
                 : 
                 <>

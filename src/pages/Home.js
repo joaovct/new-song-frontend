@@ -22,7 +22,6 @@ function Home({handleSetAccessToken, handleSetUserProfile, handleSetPlayerDevice
   useEffect(()=>{
     if(accessToken) {
       handleSetAccessToken(accessToken)
-
       window.onSpotifyWebPlaybackSDKReady = async () => initializeWebPlayer(accessToken, handleSetPlayerDevice)
     }
   },[handleSetAccessToken, accessToken, handleSetPlayerDevice])

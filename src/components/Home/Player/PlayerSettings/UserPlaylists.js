@@ -1,11 +1,11 @@
 import React,{useContext, useState, useEffect} from 'react'
 
 import styled, {createGlobalStyle} from 'styled-components'
-import {Title as title, blackColor, Button as button} from '../../../style'
-import emptyImg from '../../../assets/empty.png'
+import {Title as title, blackColor, Button as button} from '../../../../style'
+import emptyImg from '../../../../assets/empty.png'
 
-import AppContext from '../../../AppContext'
-import {addTrackToPlaylist} from '../../../helpers/playerHelper'
+import AppContext from '../../../../AppContext'
+import {addTrackToPlaylist} from '../../../../helpers/playerHelper'
 
 import NewPlaylist from './NewPlaylist'
 
@@ -15,9 +15,7 @@ function UserPlaylists({playlists, setShowPlaylists, track_id}){
     const [showAddPlaylist, setShowAddPlaylist] = useState(false)
     
     useEffect(()=>{
-        if(fadeOut) setTimeout(()=>{
-            setShowPlaylists(false)
-        }, 250)
+        if(fadeOut) setTimeout(()=> setShowPlaylists(false), 250)
     },[fadeOut, setShowPlaylists])
 
     return(

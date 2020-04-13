@@ -1,10 +1,10 @@
 import React,{ useState, useEffect, useContext } from 'react'
 
 import styled from 'styled-components'
-import {Title as title, bgElement, mainColor, Button} from '../../../style'
+import {Title as title, bgElement, mainColor, Button} from '../../../../style'
 
-import AppContext from '../../../AppContext'
-import {addTrackToPlaylist, createPlaylist} from '../../../helpers/playerHelper'
+import AppContext from '../../../../AppContext'
+import {addTrackToPlaylist, createPlaylist} from '../../../../helpers/playerHelper'
 
 function NewPlaylist({track_id, setFadeOutParent, setShowAddPlaylist}){
     const {accessToken, userProfile: {id: user_id}} = useContext(AppContext)

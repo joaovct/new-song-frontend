@@ -6,7 +6,7 @@ import AppContext from '../AppContext'
 
 function usePlayer(props){
     const {accessToken, playerDevice} = useContext(AppContext)
-    const {typeListen: type, explicitContent: explicit} = props
+    const {typeListen: type, explicitContent: explicit, languages} = props
     const [track, setTrack] = useState()
     const [isPlaying, setIsPlaying] = useState(true)
 
@@ -17,11 +17,11 @@ function usePlayer(props){
     useEffect(()=>{
         if(!track && accessToken){
             async function fetchData(){
-                setTrack(await getRandomSong({type, explicit, accessToken}))
+                setTrack(await getRandomSong({type, explicit, languages, accessToken}))
             }
             fetchData()
         }
-    },[accessToken, track, explicit, type])
+    },[accessToken, track, explicit, languages, type])
 
     useEffect(()=>{
         if(track && playerDevice){
