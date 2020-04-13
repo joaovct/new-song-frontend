@@ -3,7 +3,9 @@ import React,{useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import {bgElement, boxShadow, FieldInputToggle} from '../../../style'
+
 import useGetUserPlaylists from '../../../hooks/useGetUserPlaylists'
+import useAlert from '../../../hooks/useAlert'
 
 import UserPlaylists from './PlayerSettings/UserPlaylists'
 import ChooseLanguages from './PlayerSettings/ChooseLanguages'
@@ -13,6 +15,7 @@ function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, tr
     const [showSettings, setShowSettings] = useState(false)
     const [showPlaylists, setShowPlaylists] = useState(false)
     const [showChooseLanguages, setShowChooseLanguages] = useState(false)
+    const [Alert, setAlert] = useAlert()
     const playlists = useGetUserPlaylists()
 
     return(
@@ -22,6 +25,7 @@ function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, tr
             ? <UserPlaylists 
                 track_id={track_id}
                 playlists={playlists}
+                setAlert={setAlert}
                 setShowPlaylists={setShowPlaylists}/>
             : <></>
         }
@@ -31,6 +35,11 @@ function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, tr
                 setShowChooseLanguage={setShowChooseLanguages}
                 languages={languages}
                 handleSetLanguages={handleSetLanguages}/>
+            : <></>
+        }
+        {
+            Alert ?
+            Alert
             : <></>
         }
         <Footer>

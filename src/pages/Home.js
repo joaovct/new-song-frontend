@@ -6,6 +6,7 @@ import Script from 'react-load-script'
 
 import useGetAccessToken from '../hooks/useGetAccessToken'
 import useGetUserProfile from '../hooks/useGetUserProfile'
+import useAlert from '../hooks/useAlert'
 import {Section as section} from '../style'
 
 import Header from '../components/Header'
@@ -17,6 +18,7 @@ function Home({handleSetAccessToken, handleSetUserProfile, handleSetPlayerDevice
   const [accessToken] = useGetAccessToken(history, location)
   const [userProfile] = useGetUserProfile()
   const [typeListen, setTypeListen] = useState('')
+  const [Alert, setAlert] = useAlert()
   const {path} = match
 
   useEffect(()=>{
@@ -31,10 +33,15 @@ function Home({handleSetAccessToken, handleSetUserProfile, handleSetPlayerDevice
   },[handleSetUserProfile, userProfile])
 
   const handleSetTypeListen = radioChoose => {setTypeListen(radioChoose); history.push(`${path}/player`)}
-  const handleScriptError = () => console.log("Script error")
+  const handleScriptError = () => setAlert({type:"error", message: "Aconteceu um erro desconhecido 😵"})
 
   return (
     <>
+    {
+      Alert ?
+      Alert
+      : <></>
+    }
     {
       accessToken ? 
       <Script 

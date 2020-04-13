@@ -9,7 +9,7 @@ import {addTrackToPlaylist} from '../../../../helpers/playerHelper'
 
 import NewPlaylist from './NewPlaylist'
 
-function UserPlaylists({playlists, setShowPlaylists, track_id}){
+function UserPlaylists({playlists, setShowPlaylists, setAlert, track_id}){
     const {accessToken} = useContext(AppContext)
     const [fadeOut, setFadeOut] = useState(false)
     const [showAddPlaylist, setShowAddPlaylist] = useState(false)
@@ -17,6 +17,12 @@ function UserPlaylists({playlists, setShowPlaylists, track_id}){
     useEffect(()=>{
         if(fadeOut) setTimeout(()=> setShowPlaylists(false), 250)
     },[fadeOut, setShowPlaylists])
+
+    function handleAddTrackToPlaylist(playlist_id){
+        setAlert({type: "light", message: "Música adicionada a playlist 🎉"})
+        addTrackToPlaylist({playlist_id, track_id, accessToken})
+        setFadeOut(true)
+    }
 
     return(
         accessToken ? 
@@ -29,6 +35,7 @@ function UserPlaylists({playlists, setShowPlaylists, track_id}){
                 <NewPlaylist 
                     track_id={track_id}
                     setFadeOutParent={setFadeOut}
+                    setAlert={setAlert}
                     setShowAddPlaylist={setShowAddPlaylist}/> : <></>
             }
             
@@ -41,7 +48,7 @@ function UserPlaylists({playlists, setShowPlaylists, track_id}){
                     let {name, images, id: playlist_id} = item
                     return(
                         <Playlist
-                        onClick={() => {addTrackToPlaylist({playlist_id, track_id, accessToken}); setFadeOut(true)}}
+                        onClick={() => handleAddTrackToPlaylist(playlist_id)}
                         key={`${name} ${i}`}>
                             <figure>
                                 <span className="material-icons">playlist_add</span> 

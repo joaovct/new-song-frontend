@@ -6,7 +6,7 @@ import {Title as title, bgElement, mainColor, Button} from '../../../../style'
 import AppContext from '../../../../AppContext'
 import {addTrackToPlaylist, createPlaylist} from '../../../../helpers/playerHelper'
 
-function NewPlaylist({track_id, setFadeOutParent, setShowAddPlaylist}){
+function NewPlaylist({track_id, setFadeOutParent, setAlert, setShowAddPlaylist}){
     const {accessToken, userProfile: {id: user_id}} = useContext(AppContext)
     const [fadeOut, setFadeOut] = useState(0)
     const [namePlaylist, setNamePlaylist] = useState('')
@@ -20,13 +20,14 @@ function NewPlaylist({track_id, setFadeOutParent, setShowAddPlaylist}){
                 let {data} = await createPlaylist({accessToken, name_playlist: namePlaylist, user_id})
                 if(data){
                     let {id: playlist_id} = data
+                    setAlert({type: "light", message: "Música adicionada a playlist 🎉"})
                     await addTrackToPlaylist({accessToken, track_id, playlist_id})
                 }
             }   
             
             fetchData()
         }
-    },[fadeOut, user_id, track_id, namePlaylist, accessToken, setFadeOutParent, setShowAddPlaylist])
+    },[fadeOut, user_id, track_id, namePlaylist, accessToken, setAlert, setFadeOutParent, setShowAddPlaylist])
 
     return(
         <WrapperComponent className={fadeOut ? 'newPlaylist-fadeOut' : 'newPlaylist-fadeIn'}>

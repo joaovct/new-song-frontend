@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext, useRef} from 'react'
 
 import {getRandomSong} from '../helpers/playerHelper'
+import useAlert from '../hooks/useAlert'
 import AppContext from '../AppContext'
 
 function useActionsPlayer({setTrack, track, explicitContent, typeListen, languages}){
@@ -8,6 +9,7 @@ function useActionsPlayer({setTrack, track, explicitContent, typeListen, languag
     const renders = useRef(0)
     const [tracks, setTracks] = useState([])
     const [pointer, setPointer] = useState(0)
+    const [Alert,setAlert] = useAlert()
 
     useEffect(()=>{
         renders.current++
@@ -26,6 +28,7 @@ function useActionsPlayer({setTrack, track, explicitContent, typeListen, languag
     useEffect(()=>{
         if(pointer > tracks.length - 1 && pointer >= 0 && renders.current > 1){
             fetchData()
+            if(languages.length) setAlert({type: "", message: "Procurando por podcasts... ⏲️"})
             async function fetchData(){
                 setTrack(await getRandomSong({type: typeListen, explicit: explicitContent, accessToken, languages}))
             }
@@ -35,7 +38,7 @@ function useActionsPlayer({setTrack, track, explicitContent, typeListen, languag
     // eslint-disable-next-line
     },[pointer])
 
-    return [pointer, setPointer]
+    return [pointer, setPointer, Alert]
 }
 
 export default useActionsPlayer

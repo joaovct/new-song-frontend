@@ -14,7 +14,7 @@ function Player({typeListen}){
     const [explicitContent, setExplicitContent] = useState(false)
     const [languages, setLanguages] = useState([])
     const [track, setTrack, toggleSong] = usePlayer({typeListen, explicitContent, languages})
-    const [, setPointer] = useActionsPlayer({typeListen, explicitContent, languages, track, setTrack})
+    const [, setPointer, Alert] = useActionsPlayer({typeListen, explicitContent, languages, track, setTrack})
 
     const nextSong = () => setPointer(p => p + 1)
     const previousSong = () => setPointer(p => p > 0 ? p - 1 : p)
@@ -28,35 +28,42 @@ function Player({typeListen}){
     }
 
     return(
-        <Component className="switch-wrapper-component">
-            <Wrapper>
+        <>
             {
-                track ?
-                <>
-                <Playing>
-                    <img alt={`${track.name} album`} src={typeListen === 'music' || typeListen === '' ? track.album.images[0].url : track.images[0].url}/>
-                    <Title> {track.name} </Title>
-                    <Subtitle>{typeListen === 'music' || typeListen === '' ? track.artists[0].name : ''}</Subtitle>
-                </Playing>
-                <PlayerButtons actionPlayer={actionPlayer}/>
-                <PlayerFooter typeListen={typeListen} explicitContent={explicitContent} handleSetExplicitContent={handleSetExplicitContent} languages={languages} handleSetLanguages={handleSetLanguages} track_id={track ? track.id : ''}/>
-                </> 
-                : 
-                <>
-                <PlayingWaiting>
-                    <figure></figure>
-                    <FakeTitle/>
-                    <FakeButtons>
-                        <i className="fas fa-step-backward"></i>
-                        <i className="fas fa-play-circle"></i>
-                        <i className="fas fa-step-forward"></i>
-                    </FakeButtons>
-                    <FakeBar/>
-                </PlayingWaiting>
-                </>
+                Alert ?
+                Alert
+                : <></>
             }
-            </Wrapper>
-        </Component>
+            <Component className="switch-wrapper-component">
+                <Wrapper>
+                {
+                    track ?
+                    <>
+                    <Playing>
+                        <img alt={`${track.name} album`} src={typeListen === 'music' || typeListen === '' ? track.album.images[0].url : track.images[0].url}/>
+                        <Title> {track.name} </Title>
+                        <Subtitle>{typeListen === 'music' || typeListen === '' ? track.artists[0].name : ''}</Subtitle>
+                    </Playing>
+                    <PlayerButtons actionPlayer={actionPlayer}/>
+                    <PlayerFooter typeListen={typeListen} explicitContent={explicitContent} handleSetExplicitContent={handleSetExplicitContent} languages={languages} handleSetLanguages={handleSetLanguages} track_id={track ? track.id : ''}/>
+                    </> 
+                    : 
+                    <>
+                    <PlayingWaiting>
+                        <figure></figure>
+                        <FakeTitle/>
+                        <FakeButtons>
+                            <i className="fas fa-step-backward"></i>
+                            <i className="fas fa-play-circle"></i>
+                            <i className="fas fa-step-forward"></i>
+                        </FakeButtons>
+                        <FakeBar/>
+                    </PlayingWaiting>
+                    </>
+                }
+                </Wrapper>
+            </Component>
+        </>
     )
 }
 
