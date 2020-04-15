@@ -59,6 +59,7 @@ export default Choose
 
 const Button = styled(button)`
     margin-top: 60px;
+    font-weight: 700;
     color: black;
     &.filled{
         @media(max-width: 768px){
@@ -79,7 +80,7 @@ const BoxChoose = styled.label`
     align-items: center;
     flex-flow: column nowrap;
     cursor: pointer;
-    opacity: 0.2;
+    opacity: 0.4;
     transition: .25s;
     
     i{
@@ -123,7 +124,7 @@ const Title = styled(title)`
     font-size: 3.5rem;
     
     @media(max-width: 576px){
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 `
 
@@ -143,7 +144,7 @@ const Wrapper = styled.div`
     @media(max-width: 768px){
         column-gap: 30px;
         row-gap: 30px;
-        margin-top: 30px;
+        margin-top: 60px;
     }
 ` 
 

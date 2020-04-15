@@ -12,7 +12,7 @@ import NewPlaylist from './NewPlaylist'
 function UserPlaylists({playlists, setShowPlaylists, setAlert, track_id}){
     const {accessToken} = useContext(AppContext)
     const [fadeOut, setFadeOut] = useState(false)
-    const [showAddPlaylist, setShowAddPlaylist] = useState(true)
+    const [showAddPlaylist, setShowAddPlaylist] = useState(false)
     
     useEffect(()=>{
         if(fadeOut) setTimeout(()=> setShowPlaylists(false), 250)

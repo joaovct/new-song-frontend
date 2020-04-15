@@ -13,7 +13,7 @@ import ChooseLanguages from './PlayerSettings/ChooseLanguages'
 function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, track_id, languages, handleSetLanguages}){
     const history = useHistory()
     const [showSettings, setShowSettings] = useState(false)
-    const [showPlaylists, setShowPlaylists] = useState(true)
+    const [showPlaylists, setShowPlaylists] = useState(false)
     const [showChooseLanguages, setShowChooseLanguages] = useState(false)
     const [Alert, setAlert] = useAlert()
     const playlists = useGetUserPlaylists()
@@ -152,8 +152,21 @@ const WrapperSettings = styled.div`
         color: #999;
         cursor: pointer;
         transition: .25s;
+
         &:hover{
             color: white;
+        }
+    }
+
+    @media(max-width: 576px){
+        position: relative;
+        i{
+            order: 2;
+        }
+        ${Settings}{
+            position: absolute;
+            bottom: calc(100% + 15px);
+            order: 1;
         }
     }
 `
@@ -164,11 +177,13 @@ const FieldBackButton = styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
+
     i, span{
         font-size: 1.5rem;
         color: #999;
         transition: .25s;
     }
+
     i{
         margin-right: 10px;
     }

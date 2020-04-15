@@ -180,4 +180,8 @@ const Component = styled.div`
     display: flex;
     flex-flow: column nowrap;
     margin-top: 15px;
+
+    @media(max-width: 576px){
+        margin-top: 30px;
+    }
 ` 
