@@ -102,7 +102,7 @@ export const Button = styled.button`
         border: 2px solid ${secondaryColor};
         color: ${mainColor};
         background: transparent;
-        transition: .25s background, .5s opacity, .25s color;
+        transition: .25s background, .5s opacity, .25s color, .25s border-color;
 
         &:enabled:hover{
             background: ${secondaryColor};

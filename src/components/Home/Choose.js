@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 import styled from 'styled-components'
-import {Title as title, Button as button, mainColor} from '../../style'
+import {Title as title, Button as button, secondaryColor} from '../../style'
 
 function Choose({handleSetTypeListen, typeListen}){
     const [radioChoose, setRadioChoose] = useState(typeListen)
@@ -63,7 +63,7 @@ const Button = styled(button)`
     color: black;
     &.filled{
         @media(max-width: 768px){
-            background: ${mainColor};
+            background: ${secondaryColor};
             color: black;
         }
     }
