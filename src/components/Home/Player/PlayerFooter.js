@@ -184,7 +184,6 @@ const FieldBackButton = styled.div`
 ` 
 
 const Footer = styled.div`
-    margin-top: 30px;
     width: 100%;
     height: auto;
     display: flex;

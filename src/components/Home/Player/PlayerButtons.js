@@ -30,11 +30,6 @@ function PlayerButtons({actionPlayer}){
 
     return(
         <Component>
-            <Wrapper>
-                <i onClick={()=>{actionPlayer('previous')}} className="fas fa-step-backward"></i>
-                <i onClick={()=>{setIsPlaying(!isPlaying)}} className={isPlaying ? "fas fa-pause-circle" : "fas fa-play-circle"}></i>
-                <i onClick={()=>{actionPlayer('next')}} className="fas fa-step-forward"></i>
-            </Wrapper>
             <ProgressWrapper>
                 <span>{ formatTiming(position) }</span>
                 <FieldProgressBar>
@@ -43,6 +38,11 @@ function PlayerButtons({actionPlayer}){
                 </FieldProgressBar>
                 <span>{ formatTiming(duration) }</span>
             </ProgressWrapper>
+            <ButtonsWrapper>
+                <i onClick={()=>{actionPlayer('previous')}} className="fas fa-step-backward"></i>
+                <i onClick={()=>{setIsPlaying(!isPlaying)}} className={isPlaying ? "fas fa-pause-circle" : "fas fa-play-circle"}></i>
+                <i onClick={()=>{actionPlayer('next')}} className="fas fa-step-forward"></i>
+            </ButtonsWrapper>
         </Component>
     )
 }
@@ -50,6 +50,45 @@ function PlayerButtons({actionPlayer}){
 export default PlayerButtons
 
 const borderRadiusProgressBar = '7px'
+
+const ButtonsWrapper = styled.div`
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    i{
+        font-size: 1.75rem;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: .25s opacity, .25s font-size;
+
+        &:hover{
+            opacity: 1;
+            font-size: 2rem;
+        }
+
+        &:nth-child(2){
+            font-size: 3rem;
+            margin: 0 30px;
+
+            &:hover{
+                font-size: 3.5rem;
+                transition: .25s opacity, .25s font-size;
+            }
+        }
+
+        @media(max-width: 768px){
+            opacity: 1;
+            &:hover{
+                font-size: 1.75rem;
+                &:nth-child(2){
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+` 
 
 const ProgressLine = styled.div`
     position: absolute;
@@ -122,7 +161,6 @@ const FieldProgressBar = styled.div`
 const ProgressWrapper = styled.div`
     height: 1rem;
     width: 100%;
-    margin-top: 15px;
     display: flex;
     align-items: center;
 
@@ -137,37 +175,9 @@ const ProgressWrapper = styled.div`
     }
 ` 
 
-const Wrapper = styled.div`
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    i{
-        font-size: 1.75rem;
-        opacity: 0.5;
-        cursor: pointer;
-        transition: .25s opacity, .25s font-size;
-
-        &:hover{
-            opacity: 1;
-            font-size: 2rem;
-        }
-
-        &:nth-child(2){
-            font-size: 3rem;
-            margin: 0 30px;
-
-            &:hover{
-                font-size: 3.5rem;
-                transition: .25s opacity, .25s font-size;
-            }
-        }
-    }
-` 
-
 const Component = styled.div`
-    margin-top: 15px;
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
+    margin-top: 15px;
 ` 

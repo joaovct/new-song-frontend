@@ -37,12 +37,22 @@ const Content = styled.div`
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    width: 100%;
 
     ${Title}{
+        width: 100%;
         text-align: center;
 
         @media(max-width: 768px){
             font-size: 3rem;
+        }
+
+        @media(max-width: 576px){
+            font-size: 2.25rem;
+        }
+
+        @media(max-width: 435px){
+            font-size: 1.8rem;
         }
     }
 
@@ -53,7 +63,7 @@ const Content = styled.div`
         margin-top: 10px;
 
         @media(max-width: 768px){
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     }
 
@@ -75,15 +85,9 @@ background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 background-image: linear-gradient(320deg, #00c6fb 0%, #005bea 100%);
 `
 
-
-
 const Section = styled(section)`
     flex-flow: column nowrap;
     ${gradient}
-
-    @media(max-width: 768px){
-        padding: 30px;
-    }
 `
 
 export default Login

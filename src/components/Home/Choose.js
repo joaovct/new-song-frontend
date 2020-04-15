@@ -120,11 +120,10 @@ const BoxChoose = styled.label`
 
 const Title = styled(title)`
     text-align: center;
-    @media(max-width: 768px){
-        font-size: 3rem;
-    }
+    font-size: 3.5rem;
+    
     @media(max-width: 576px){
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 `
 

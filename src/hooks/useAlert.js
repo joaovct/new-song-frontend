@@ -11,11 +11,6 @@ function useAlert(){
         }
     },[alert])
 
-    useEffect(()=>{
-        console.log(alert)
-        console.log(Object.keys(alert))
-    },[alert])
-
     return [ Object.keys(alert).length ? <Alert type={alert.type} message={alert.message} timing={alert.timing}/> : '', setAlert ]
 }
 

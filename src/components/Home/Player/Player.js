@@ -57,7 +57,6 @@ function Player({typeListen}){
                             <i className="fas fa-play-circle"></i>
                             <i className="fas fa-step-forward"></i>
                         </FakeButtons>
-                        <FakeBar/>
                     </PlayingWaiting>
                     </>
                 }
@@ -68,14 +67,6 @@ function Player({typeListen}){
 }
 
 export default Player
-
-const FakeBar = styled.div`
-    margin-top: 30px;
-    height: 1rem;
-    width: 100%;
-    border-radius: 4px;
-    background: ${bgElement};
-`
 
 const FakeButtons = styled.ul`
     display: flex;
@@ -112,8 +103,7 @@ const PlayingWaiting = styled.div`
     flex-flow: column nowrap;
     align-items: center;
     opacity: .8;
-    padding-bottom: 30px;
-
+    
     figure{
         background: ${bgElement};
         border-radius: 7px;
@@ -122,14 +112,24 @@ const PlayingWaiting = styled.div`
     }
 `
 
-const Title = styled(title)`
-    font-size: 2rem;
-    margin-top: 15px;
+const Subtitle = styled(subtitle)`
+    width: 100%;
+    font-size: 1.2rem;
+    color: #999;
+
+    @media(max-width: 576px){
+        text-align: left;
+    }
 `
 
-const Subtitle = styled(subtitle)`
-    font-size: 1.25rem;
-    color: #999;
+const Title = styled(title)`
+    width: 100%;
+    font-size: 1.8rem;
+    margin-top: 30px;
+
+    @media(max-width: 576px){
+        text-align: left;
+    }
 `
 
 const Playing = styled.div`
@@ -140,17 +140,17 @@ const Playing = styled.div`
     width: 100%;
 
     img{
-        width: 100%;
+        height: 250px;
+        width: 250px;
         object-fit: cover;
-        border-radius: 5px;
         box-shadow: 0 10px 25px 0px rgba(0,0,0,.5);
 
-        @media(min-width: 1441px){
-        height: 400px;
-        width: 400px;
+        @media(max-width: 576px){
+            height: 300px;
+            width: 300px;
         }
 
-        @media(max-width: 1440px){
+        @media(max-width: 350px){
             height: 250px;
             width: 250px;
         }
@@ -165,12 +165,18 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
 
+    @media(max-width: 576px){
+        width: 300px;
+    }
+
+    @media(max-width: 350px){
+        width: 250px;
+    }
 ` 
 
 const Component = styled.div`
     height: 100%;
     width: 100%;
-    padding-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;

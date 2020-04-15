@@ -94,8 +94,8 @@ const Options = styled.ul`
 `
 
 const Photo = styled.img`
-    height: 65px;
-    width: 65px;
+    height: 55px;
+    width: 55px;
     object-fit: cover;
     cursor: pointer;
     box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
@@ -122,7 +122,7 @@ const WrapperOptions = styled.div`
 `
 
 const Logo = styled.img`
-    height: 50px;
+    height: 40px;
     width: auto;
     cursor: pointer;
 
@@ -134,13 +134,9 @@ const Logo = styled.img`
 const Wrapper = styled.header`
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     position: relative;
-
-    @media(max-width: 768px){
-        justify-content: space-between;
-    }
 
     @media(max-width: 390px){
         align-items: center;
