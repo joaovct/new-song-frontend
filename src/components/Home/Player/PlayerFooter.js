@@ -13,7 +13,7 @@ import ChooseLanguages from './PlayerSettings/ChooseLanguages'
 function PlayerFooter({typeListen, explicitContent, handleSetExplicitContent, track_id, languages, handleSetLanguages}){
     const history = useHistory()
     const [showSettings, setShowSettings] = useState(false)
-    const [showPlaylists, setShowPlaylists] = useState(false)
+    const [showPlaylists, setShowPlaylists] = useState(true)
     const [showChooseLanguages, setShowChooseLanguages] = useState(false)
     const [Alert, setAlert] = useAlert()
     const playlists = useGetUserPlaylists()

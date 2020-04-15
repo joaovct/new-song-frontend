@@ -12,7 +12,7 @@ import NewPlaylist from './NewPlaylist'
 function UserPlaylists({playlists, setShowPlaylists, setAlert, track_id}){
     const {accessToken} = useContext(AppContext)
     const [fadeOut, setFadeOut] = useState(false)
-    const [showAddPlaylist, setShowAddPlaylist] = useState(false)
+    const [showAddPlaylist, setShowAddPlaylist] = useState(true)
     
     useEffect(()=>{
         if(fadeOut) setTimeout(()=> setShowPlaylists(false), 250)
@@ -129,7 +129,8 @@ const Wrapper = styled.div`
     }
 
     @media(max-width: 495px){
-        grid-template-columns: 1fr;
+        justify-content: center;
+        grid-template-columns: 300px;
     }
 `
 
@@ -143,6 +144,14 @@ const Title = styled(title)`
 
     @media(max-width: 768px){
         font-size: 3rem;
+    }
+
+    @media(max-width: 576px){
+        font-size: 2rem;
+    }
+
+    @media(max-width: 390px){
+        font-size: 1.75rem;
     }
 `
 

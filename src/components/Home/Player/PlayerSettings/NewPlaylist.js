@@ -47,7 +47,6 @@ function NewPlaylist({track_id, setFadeOutParent, setAlert, setShowAddPlaylist})
 
 export default NewPlaylist
 
-
 const FieldButtons = styled.div`
     display: flex;
     justify-content: center;
@@ -68,6 +67,10 @@ const FieldButtons = styled.div`
         }
         &:last-child{
             margin-left: 15px;
+        }
+
+        @media(max-width: 768px){
+            font-size: .7rem;
         }
     }
 `
@@ -99,6 +102,14 @@ const Form = styled.div`
             opacity: .3;
         }
     }
+
+    @media(max-width: 768px){
+        padding: 30px;
+
+        input[type=text]{
+            font-size: 2rem;
+        }
+    }
 `
 
 const CloseButton = styled.div`
@@ -110,6 +121,10 @@ const CloseButton = styled.div`
 const Title = styled(title)`
     font-size: 3rem;
     margin-top: 30px;
+
+    @media(max-width: 768px){
+        font-size: 2rem;
+    }
 `
 
 const WrapperComponent = styled.div`
