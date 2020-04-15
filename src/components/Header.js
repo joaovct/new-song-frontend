@@ -38,13 +38,13 @@ export default Header
 const Options = styled.ul`
     height: auto;
     width: auto;
-    margin: 15px 0 0 0;
     background: ${bgElement};
     color: white;
     border-radius: 7px;
     box-shadow: ${boxShadow};
-    position: relative;
-    right: 0;
+    position: absolute;
+    top: 100%;
+    margin-top: 15px;
 
     li{
         font-size: .9rem;
@@ -108,12 +108,12 @@ const Photo = styled.img`
 `
 
 const WrapperOptions = styled.div`
-    position: absolute;
-    right: 0;
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-end;
-
+    position: relative;
+    
     @media(max-width: 768px){
         position: relative;
         right: inherit;
@@ -135,7 +135,7 @@ const Wrapper = styled.header`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
 
     @media(max-width: 390px){
