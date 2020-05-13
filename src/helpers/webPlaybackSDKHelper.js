@@ -40,28 +40,40 @@ export async function initializeWebPlayer(accessToken, handleSetPlayerDevice){
   if(window['Spotify']){
     player = new window.Spotify.Player({name: 'New song', getOAuthToken: cb => { cb(accessToken); }});
       
-    // Error
-    // player.addListener('initialization_error', ({ message }) => { console.error(message) })
-    // player.addListener('authentication_error', ({ message }) => { console.error(message) })
-    // player.addListener('account_error', ({ message }) => { console.error(message);})
-    // player.addListener('playback_error', ({ message }) => { console.error(message) })
-
-    // Playback status updates
-    // let state
-    // player.addListener('player_state_changed', state => { state = state; console.log(state) })
-
     // Ready
     player.addListener('ready', () => { 
       handleSetPlayerDevice(player)
     })
 
-    // Not Ready
-    // player.addListener('not_ready', () => { console.log('Device has gone offline') })
-
     player.connect()
 
     return player
   }
+}
+
+export function getWebPlayer(){
+  return player
+}
+
+let eventFired = false
+
+export function isTrackEnded(state, callback){
+  if(state && state.track_window.previous_tracks.find(x => x.id === state.track_window.current_track.id) && state.paused){
+    if(!eventFired){
+      callback(true)
+      eventFired = true
+    }else{
+      callback(false)
+    }
+  }
+      
+  if(eventFired){
+    setTimeout(()=>{
+      eventFired = false
+    }, 3000)
+  }
+
+  return false
 }
 
 export function disconnectSDK(){

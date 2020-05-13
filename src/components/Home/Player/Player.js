@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 
 import styled from 'styled-components'
 import {Title as title, Subtitle as subtitle, boxShadow, bgElement} from '../../../style'
@@ -6,6 +6,7 @@ import {Title as title, Subtitle as subtitle, boxShadow, bgElement} from '../../
 import {playerImageMediaQuery, playerMediaQuery} from '../../../helpers/playerHelper'
 import useActionsPlayer from '../../../hooks/useActionsPlayer'
 import usePlayer from '../../../hooks/usePlayer'
+import {getWebPlayer, isTrackEnded} from '../../../helpers/webPlaybackSDKHelper'
 
 import PlayerButtons from './PlayerButtons'
 import PlayerFooter from './PlayerFooter'
@@ -15,17 +16,37 @@ function Player({typeListen}){
     const [languages, setLanguages] = useState([])
     const [track, setTrack, toggleSong] = usePlayer({typeListen, explicitContent, languages})
     const [, setPointer, Alert] = useActionsPlayer({typeListen, explicitContent, languages, track, setTrack})
+    const [isMounted, setIsMounted] = useState(false)
+    const player = getWebPlayer()
 
-    const nextSong = () => setPointer(p => p + 1)
-    const previousSong = () => setPointer(p => p > 0 ? p - 1 : p)
+    useEffect(()=>{
+        setIsMounted(true)
+    },[setIsMounted])
+
+    if(player){
+        player.addListener('player_state_changed', state => {
+            isTrackEnded(state, isEnded => {
+                if(isEnded) nextTrack()
+            })
+        })
+    }
+
+    const nextTrack = () => {
+        if(isMounted) setPointer(p => p + 1)
+    }
+    const previousTrack = () => {
+        if(isMounted) setPointer(p => p > 0 ? p - 1 : p) 
+    }
+
     const handleSetLanguages = value => setLanguages(value)  
     const handleSetExplicitContent = value => setExplicitContent(value)
 
     function actionPlayer(action){
-        if(action === 'next') nextSong()
-        else if(action === 'previous') previousSong()
+        if(action === 'next') nextTrack()
+        else if(action === 'previous') previousTrack()
         else if(action === 'toggle') toggleSong()
     }
+
 
     return(
         <>
